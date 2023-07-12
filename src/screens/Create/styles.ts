@@ -17,6 +17,25 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginVertical: 13,
   },
+  inputContainer:{
+    marginVertical: 10,
+    marginHorizontal: 5,
+  },
+  inputTitle:{
+    fontSize: 18,
+    color: '#fff',
+    marginBottom: 10,
+  },
+  input:{
+    color: '#fff',
+    height: 40,
+    width: '100%',
+    alignSelf:'center',
+    backgroundColor: '#000',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 15,
+  },
 });
 
 export default styles;
