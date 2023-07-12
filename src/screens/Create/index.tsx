@@ -7,6 +7,7 @@ const Create = () => {
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Let's create a FLOW accomodation</Text>
+      <Text>Testing my new branch</Text>
     </View>
   );
 };
