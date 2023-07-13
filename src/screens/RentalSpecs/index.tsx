@@ -22,7 +22,7 @@ const RentalSpecs = () => {
       </Text>
 
       {/* Image Carousel */}
-      <ImageCarousel images={places.images} />
+      <ImageCarousel images={places[0].images} />
 
       <View
         style={{

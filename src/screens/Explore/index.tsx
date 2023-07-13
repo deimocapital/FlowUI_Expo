@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, ScrollView, Text} from 'react-native';
-
 import PlaceCard from '../../components/PlaceCard';
 import styles from './styles';
 
@@ -14,20 +13,20 @@ const Explore = () => {
       </Text>
       <View style={styles.cardsContainer}>
         <PlaceCard
-          title="Dallas"
-          country="USA"
+          title="Country Road House"
+          country="Dallas,USA"
           image={images.house1}
           price="220"
         />
         <PlaceCard
-          title="Puerto Escondido"
-          country="México"
+          title="Goo Lagoon Escape"
+          country="Puerto Escondido, México"
           image={images.house2}
           price="350"
         />
         <PlaceCard
-          title="Mont-Tremblant"
-          country="Canada"
+          title="Ice Skii House"
+          country="Mont-Tremblant, Canada"
           image={images.house3}
           price="475"
         />

@@ -1,28 +1,28 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, ScrollView} from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {GOOGLE_MAPS_APIKEY} from "@env";
+
+import Button from '../../components/Button';
 import DropdownInput from '../../components/DropdownInput';
-import styles from './styles';
+import ImageSelector from '../../components/ImageSelector';
+import { addAccomodation } from '../../utils/AccomodationApi';
 
 import places from '../../data/places';
+import styles from './styles';
 
 const Create = () => {
   const [location, setLocation] = useState("");
   const [houseTitle, setHouseTitle] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-  const [images, setImage] = useState(["https://a0.muscache.com/im/pictures/8ac03edc-283d-4b11-9420-0ddc8349be7e.jpg?im_w=960", "https://a0.muscache.com/im/pictures/eaecc202-4b98-405a-8102-085fa7da2871.jpg?im_w=480"]);
+  const [images, setImages] = useState([""]);
   const [price, setPrice] = useState("");
-  const [dates, setDates] = useState(["23/05/2021", "24/05/2021"]);
 
-  const information ={location,houseTitle,address,description,images,price,dates}
-
-  console.log(information);
-  
+  const information ={location,houseTitle,address,description,images,price}
 
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <Text style={styles.title}>Let's create a FLOW accomodation</Text>
 
       <View style={styles.inputContainer}>
@@ -84,9 +84,8 @@ const Create = () => {
         />
 
         <Text style={styles.inputTitle}>Event images</Text>
+         <ImageSelector images={images} setImages={setImages} />
         
-        
-
         <Text style={styles.inputTitle}>Price per night ($FLOW)</Text>
         <TextInput 
           placeholder="$130" 
@@ -97,11 +96,11 @@ const Create = () => {
           placeholderTextColor="#7e7f80" 
           selectionColor="#fff"  
         />
-
-        <Text style={styles.inputTitle}>Dates Available</Text>
-
       </View>
-    </View>
+      <View style={{marginBottom: 35, alignSelf:'flex-end'}}>
+        <Button text='Create Accomodation' onPress={()=> addAccomodation(information)} containerStyles={{borderRadius:5, padding:5}} />
+      </View>
+    </ScrollView>
   );
 };
 

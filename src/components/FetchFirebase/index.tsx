@@ -5,10 +5,10 @@ import {firebase} from '../../../config';
 const FetchFirebase = () => {
   
   const[users, setUsers] = useState([]);
-  const getUsers =firebase.firestore().collection('user');  
+  const usersRef =firebase.firestore().collection('user');  
 
   useEffect(() => {
-    getUsers
+    usersRef
     .onSnapshot(
         querySnapshot => {
             const users =[]

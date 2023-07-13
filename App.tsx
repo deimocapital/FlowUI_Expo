@@ -7,7 +7,6 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import Router from './src/router';
 import FetchFirebase from './src/components/FetchFirebase';
-import ImageUploader from './src/components/ImageUploader';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

@@ -2,10 +2,11 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
-
+import RentalSpecs from '../../screens/RentalSpecs';
 import Button from '../Button';
 
 const PlaceCard = ({title, country, image, price}) => {
+
   return (
     <View style={[styles.card, styles.cardElevated]}>
       <Image source={image} style={styles.cardImage} />

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginVertical: 13,
   },
   inputContainer:{
-    marginVertical: 10,
+    marginTop: 10,
     marginHorizontal: 5,
   },
   inputTitle:{

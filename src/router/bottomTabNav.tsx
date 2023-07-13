@@ -7,6 +7,7 @@ import Explore from '../screens/Explore';
 import Reservations from '../screens/Reservations';
 import Rewards from '../screens/Rewards';
 import RentalSpecs from '../screens/RentalSpecs';
+import User from '../screens/User';
 import Create from '../screens/Create';
 
 const BottomTab = createBottomTabNavigator();
@@ -55,6 +56,15 @@ const BottomTabNav = () => {
         options={{
           tabBarIcon: ({color}) => (
             <Feather name="gift" size={25} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        component={User}
+        name="Profile"
+        options={{
+          tabBarIcon: ({color}) => (
+            <Feather name="user" size={25} color={color} />
           ),
         }}
       />
