@@ -22,8 +22,6 @@ const Explore = () => {
 
   useEffect(() => {
     getAccomodations().then((airbnb) => {
-      console.log(airbnb[0].images);
-      
       setAccomodations(airbnb);
     });
   },[]);
@@ -35,12 +33,15 @@ const Explore = () => {
       </Text>
       <View style={styles.cardsContainer}>
 
-          {accomodations.map((item) => (
+          {accomodations.map((item, i) => (
               <PlaceCard
+              key={i}
               title={item.houseTitle}
               country={item.location}
+              address = {item.address}
               image={item.images}
               price={item.price}
+              description={item.description}
             />
           ))}
       </View>

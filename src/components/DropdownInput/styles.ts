@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     },
     inputSearchStyle: {
       height:40,
+      color: 'grey',
       backgroundColor: '#292928',
       borderColor:'#292928',
       fontSize: 14,

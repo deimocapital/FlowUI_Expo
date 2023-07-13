@@ -5,8 +5,13 @@ import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
 import Button from '../Button';
 
-const PlaceCard = ({title, country, image, price}) => {
+const PlaceCard = ({title, country, image, address, price, description}) => {
   const navigation = useNavigation();
+
+  const onPress = () => {
+    navigation.navigate('RentalSpecs', {title,address, country, image, price, description});
+  };
+
   return (
     <View style={[styles.card, styles.cardElevated]}>
       <Image source={{uri:image}} style={styles.cardImage} />
@@ -20,7 +25,7 @@ const PlaceCard = ({title, country, image, price}) => {
         <Button
           text="View property"
           type="view-property"
-          onPress={()=>{}}
+          onPress={onPress}
           containerStyles={{
             padding: 4,
           }}

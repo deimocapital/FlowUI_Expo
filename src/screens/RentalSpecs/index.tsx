@@ -1,5 +1,7 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {View, Text, Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
 
 import styles from './styles';
 import Button from '../../components/Button';
@@ -7,18 +9,33 @@ import ImageCarousel from '../../components/ImageCarousel';
 
 import places from '../../data/places';
 
-const RentalSpecs = () => {
+const RentalSpecs = ({route}) => {
+  const navigation = useNavigation();
+  
+  const onPress = () => {
+    navigation.navigate('Explore');
+  };
+
+ const {title, country, address, image, price, description} = route.params;
+
+ 
+
   return (
     <View style={styles.root}>
-      <View style={styles.headingContainer}>
-        <Text style={styles.title}>Mazatlan Tree House</Text>
-        <Text style={styles.location}>Mazatlan, Mexico</Text>
+      <View style={{flexDirection:'row', marginBottom:20}}>
+        <View style={styles.prevButton}>
+          <Pressable onPress={onPress}>
+            <Text>←</Text>
+          </Pressable>
+        </View>
+        <View style={styles.headingContainer}>
+
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.location}>{country}</Text>
+        </View>
       </View>
       <Text style={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        {description}
       </Text>
 
       {/* Image Carousel */}
@@ -34,10 +51,10 @@ const RentalSpecs = () => {
       />
       <View style={{margin: 5}}>
         <Text style={styles.lastTitles}>Cost</Text>
-        <Text style={styles.lastTexts}>$400 FLOW / night</Text>
+        <Text style={styles.lastTexts}>${price} FLOW / night</Text>
 
         <Text style={styles.lastTitles}>Location</Text>
-        <Text style={styles.lastTexts}>Lerdo 16, Col. Barranca Seca</Text>
+        <Text style={styles.lastTexts}>{address}</Text>
 
         <Text style={styles.lastTitles}>Choose Dates</Text>
       </View>

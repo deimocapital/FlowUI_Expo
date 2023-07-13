@@ -8,13 +8,21 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#242323',
   },
+  prevButton:{
+    backgroundColor: '#fff',
+    borderRadius: 50,
+    width: 35,
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   cardsContainer: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
     marginBottom: 90,
   },
   headingContainer: {
-    marginVertical: 12,
+    marginHorizontal: 15, 
   },
   title: {
     fontSize: 28,
