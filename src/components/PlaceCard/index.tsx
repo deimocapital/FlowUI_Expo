@@ -9,7 +9,7 @@ const PlaceCard = ({title, country, image, price}) => {
   const navigation = useNavigation();
   return (
     <View style={[styles.card, styles.cardElevated]}>
-      <Image source={image} style={styles.cardImage} />
+      <Image source={{uri:image}} style={styles.cardImage} />
 
       <View style={styles.cardBody}>
         <View>
@@ -20,7 +20,7 @@ const PlaceCard = ({title, country, image, price}) => {
         <Button
           text="View property"
           type="view-property"
-          onPress={()=>navigation.navigate('RentalSpecs')}
+          onPress={()=>{}}
           containerStyles={{
             padding: 4,
           }}
