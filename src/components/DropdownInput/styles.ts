@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
       marginBottom: 15,
     },
     containerStyle: {
-        marginTop: 10,
-        backgroundColor: '#fff',
-        borderColor:'#3bff86',
+        marginTop: 16,
+        backgroundColor: '#292928',
+        borderColor:'#000',
         borderWidth: 3,
     },
     placeholderStyle: {
@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     },
     inputSearchStyle: {
       height:40,
+      backgroundColor: '#292928',
+      borderColor:'#292928',
       fontSize: 14,
     },
 });

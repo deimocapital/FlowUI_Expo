@@ -21,9 +21,10 @@ const DropdownInput = ({location, setLocation}) => {
         data={data}
         search
         labelField="label"
+        activeColor='#000'
         containerStyle={styles.containerStyle}
-        itemTextStyle={{color:'blue'}}
-        itemContainerStyle={{backgroundColor:'#fff'}}
+        itemTextStyle={{color:'#fff'}}
+        itemContainerStyle={{backgroundColor:'#000',borderBottomColor:'#fff',borderBottomWidth:1}}
         valueField="value"
         placeholder="Country"
         searchPlaceholder="Search..."
