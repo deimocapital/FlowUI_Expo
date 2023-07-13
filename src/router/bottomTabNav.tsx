@@ -24,7 +24,7 @@ const BottomTabNav = () => {
         tabBarInactiveBackgroundColor: '#242323',
       }}>
       <BottomTab.Screen
-        component={Explore}
+        component={RentalSpecs}
         name="Explore"
         options={{
           tabBarIcon: ({color}) => (

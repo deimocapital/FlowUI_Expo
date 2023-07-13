@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles';
-import RentalSpecs from '../../screens/RentalSpecs';
 import Button from '../Button';
 
 const PlaceCard = ({title, country, image, price}) => {
-
+  const navigation = useNavigation();
   return (
     <View style={[styles.card, styles.cardElevated]}>
       <Image source={image} style={styles.cardImage} />
@@ -20,7 +20,7 @@ const PlaceCard = ({title, country, image, price}) => {
         <Button
           text="View property"
           type="view-property"
-          onPress={() => {}}
+          onPress={()=>navigation.navigate('RentalSpecs')}
           containerStyles={{
             padding: 4,
           }}
