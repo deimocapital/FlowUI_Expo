@@ -1,18 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable, ScrollView, TextInput} from 'react-native';
+import {View, Text, Pressable, ScrollView, TextInput, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { addReservation } from '../../utils/ReservationApi';
-import DatePicker from '../../components/DatePicker';
 import styles from './styles';
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 
-import places from '../../data/places';
-
 const RentalSpecs = ({route}) => {
   const navigation = useNavigation();
-  const[arrivalDate, setArrivalDate] = useState(new Date());
-  const[departureDate, setDepartureDate] = useState(new Date());
+  const[arrivalDate, setArrivalDate] = useState('');
+  const[departureDate, setDepartureDate] = useState('');
   const[guests, setGuests] = useState('1');
   const onPress = () => {
     navigation.navigate('Explore');
@@ -20,7 +17,8 @@ const RentalSpecs = ({route}) => {
 
  const {title, country, address, image, price, owner, description, instructions, rules} = route.params;
 
- const dates = {arrivalDat:'Tuesday, July 30, 2023', departureDat:'Wedenesday, July 31, 2023'};
+ //const dates = {arrivalDat:'Tuesday, July 30, 2023', departureDat:'Wedenesday, July 31, 2023'};
+ const dates = {arrivalDate, departureDate};
 
   const reservation = {dates, owner, title, country, address, image, price, description, guests, instructions, rules};
 
@@ -46,7 +44,8 @@ const RentalSpecs = ({route}) => {
       </Text>
 
       {/* Image Carousel */}
-      <ImageCarousel images={places[0].images} />
+      {/* <ImageCarousel images={image} /> */}
+      <Image source={{uri:image}} style={{margin: 10, height: 250, borderRadius: 15}} />
 
       <View
         style={{
@@ -77,9 +76,26 @@ const RentalSpecs = ({route}) => {
         </View>
 
         <View style={{marginVertical:10}}>
-          <Text style={styles.lastTitles}>Choose Dates</Text>
-          <DatePicker date={arrivalDate} setDate={setArrivalDate} />
-          <DatePicker date={departureDate} setDate={setDepartureDate} />
+          <Text style={styles.lastTitles}>Arrival Date</Text>
+          <TextInput 
+            placeholder="July 20, 2023" 
+            value={arrivalDate}
+            onChangeText={setArrivalDate}
+            style={[styles.input, {marginTop: 10}]} 
+            keyboardType="default" 
+            placeholderTextColor="#7e7f80" 
+            selectionColor="#fff"  
+          />
+          <Text style={styles.lastTitles}>Departure Date</Text>
+          <TextInput 
+            placeholder="July 25, 2023" 
+            value={departureDate}
+            onChangeText={setDepartureDate}
+            style={[styles.input, {marginTop: 10}]} 
+            keyboardType="default"
+            placeholderTextColor="#7e7f80" 
+            selectionColor="#fff"  
+          />
         </View>
 
         <Text style={styles.lastTitles}>Number of Guests</Text>

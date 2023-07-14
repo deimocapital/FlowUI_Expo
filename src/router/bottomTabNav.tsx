@@ -6,7 +6,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import Explore from '../screens/Explore';
 import Reservations from '../screens/Reservations';
 import Rewards from '../screens/Rewards';
-import Profile from '../screens/Profile';
 import Create from '../screens/Create';
 import LogIn from '../screens/LogIn';
 

@@ -6,7 +6,6 @@ import BottomTabNav from './bottomTabNav';
 
 import Explore from '../screens/Explore';
 import RentalSpecs from '../screens/RentalSpecs';
-import Reservations from '../screens/Reservations';
 
 const Root = createStackNavigator();
 

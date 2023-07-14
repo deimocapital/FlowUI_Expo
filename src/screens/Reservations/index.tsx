@@ -11,24 +11,21 @@ const Reservations = () => {
   
   const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState({
-    username: '',
     walletID: '',
     rewardCounter:0
   });
 
   useEffect(() => {
-    getUser('').then((user) => {
+    getUser('0xea059bf1b1bb030b').then((user) => {
       setIsConnected(true);
       setUser(user);
     });
   }, []);
 
-  console.log(user);
-  
   return (
     <View style={styles.root}>
       <Text style={styles.title}>My Reservations</Text>
-      {isConnected && (
+      {isConnected ? (
         <View style={styles.cardsContainer}>
           <ReservationCard
             title="Puerto Escondido Palm House"
@@ -42,6 +39,10 @@ const Reservations = () => {
             dates="25 Dec 2023"
             image={images.house2}
           />
+        </View>
+      ): (
+        <View style={styles.logInPrompt}>
+          <Text style={[styles.title, {fontSize:18}]}>No current reservations</Text>
         </View>
       )}
     </View>

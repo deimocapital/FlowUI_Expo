@@ -1,26 +1,26 @@
 import {firebase} from '../../config';
 import {collection, doc, updateDoc, query, where, getFirestore, getDocs} from "firebase/firestore";
 
-export const addUser = (user) => {
-    firebase.firestore()
-      .collection('user')
-      .add({
+export const addUser = (walletID) => {
+        firebase.firestore()
+        .collection('user')
+        .add({
         rewardCounter: 0,
-        walletID: user.walletID,
-      }).then((snapshot) => snapshot.get()).catch((error) => console.log(error));
+        walletID: walletID,
+        }).then((snapshot) => snapshot.get()).catch((error) => console.log(error)); 
 };
 
-export const getUser = async(walletAddress) => {
+export const getUser = async(walletID) => {
     const db = getFirestore();
     const userRef = collection(db, "user");
-    const q = query(userRef, where("walletAddress", "==", walletAddress));
+    const q = query(userRef, where("walletID", "==", walletID));
     
     const querySnapshot = await getDocs(q);
     let user;
     querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     // console.log(doc.id, " => ", doc.data());
-     user = {doc: doc.id , data: doc.data()};
+    user = {doc: doc.id , data: doc.data()};
     });
     return user;
 };

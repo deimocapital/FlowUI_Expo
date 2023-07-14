@@ -69,6 +69,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginRight: 15,
   },
+  providersContainer:{
+    flexDirection:'row', 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imageProviders:{
+    height: 20,
+    width: 20,
+    marginTop:3,
+    marginBottom:2,
+    marginRight:5,
+  }
 });
 
 export default styles;
