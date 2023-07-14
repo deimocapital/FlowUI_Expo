@@ -6,8 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import Explore from '../screens/Explore';
 import Reservations from '../screens/Reservations';
 import Rewards from '../screens/Rewards';
-import RentalSpecs from '../screens/RentalSpecs';
-import User from '../screens/User';
+import Profile from '../screens/Profile';
 import Create from '../screens/Create';
 
 const BottomTab = createBottomTabNavigator();
@@ -60,7 +59,7 @@ const BottomTabNav = () => {
         }}
       />
       <BottomTab.Screen
-        component={User}
+        component={Profile}
         name="Profile"
         options={{
           tabBarIcon: ({color}) => (

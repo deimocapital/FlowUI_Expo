@@ -5,11 +5,11 @@ import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
 import Button from '../Button';
 
-const PlaceCard = ({title, country, image, address, price, description}) => {
+const PlaceCard = ({title, country, image, address, price, description, owner, isReserved, instructions, rules}) => {
   const navigation = useNavigation();
 
   const onPress = () => {
-    navigation.navigate('RentalSpecs', {title,address, country, image, price, description});
+    navigation.navigate('RentalSpecs', {title,address, country, image, price, description, owner, instructions, rules});
   };
 
   return (

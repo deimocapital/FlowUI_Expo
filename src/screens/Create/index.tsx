@@ -18,8 +18,10 @@ const Create = () => {
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([""]);
   const [price, setPrice] = useState("");
+  const [rules, setRules] = useState("");
+  const [instructions, setInstructions] = useState("");
 
-  const information ={location,houseTitle,address,description,images,price}
+  const information ={location,houseTitle,address,description,images,price, rules, instructions};
 
   return (
     <ScrollView style={styles.root}>
@@ -76,6 +78,32 @@ const Create = () => {
           numberOfLines = {5} 
           value={description}
           onChangeText={setDescription}
+          placeholder="The best experience..."  
+          keyboardType="default" 
+          placeholderTextColor="#7e7f80" 
+          selectionColor="#fff"
+          style={[styles.input, {height: 90}]}
+        />
+
+        <Text style={styles.inputTitle}>Rules</Text>
+        <TextInput 
+          multiline = {true}
+          numberOfLines = {5} 
+          value={rules}
+          onChangeText={setRules}
+          placeholder="The best experience..."  
+          keyboardType="default" 
+          placeholderTextColor="#7e7f80" 
+          selectionColor="#fff"
+          style={[styles.input, {height: 90}]}
+        />
+
+        <Text style={styles.inputTitle}>Instructions</Text>
+        <TextInput 
+          multiline = {true}
+          numberOfLines = {5} 
+          value={instructions}
+          onChangeText={setInstructions}
           placeholder="The best experience..."  
           keyboardType="default" 
           placeholderTextColor="#7e7f80" 

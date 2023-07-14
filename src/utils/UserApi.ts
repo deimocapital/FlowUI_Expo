@@ -1,5 +1,5 @@
 import {firebase} from '../../config';
-import {collection, query, where, getFirestore, getDocs} from "firebase/firestore";
+import {collection, doc, updateDoc, query, where, getFirestore, getDocs} from "firebase/firestore";
 
 
 export const getUser = async(walletAddress) => {
@@ -16,6 +16,27 @@ export const getUser = async(walletAddress) => {
     });
     return user;
 };
+
+export const getAndUpdateCounter = (walletAddress) => {
+    const db = getFirestore(); // initialize Firestore
+    const docRef = doc(db, "user", walletAddress);
+
+    const data = {
+        rewardCounter: firebase.firestore.FieldValue.increment(1)
+    }
+
+    updateDoc(docRef, data)
+    .then(docRef => {
+        console.log("Value of an Existing Document Field has been updated");
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+
+
+
 
 // import {getFirestore, doc, getDoc} from "firebase/firestore";
 

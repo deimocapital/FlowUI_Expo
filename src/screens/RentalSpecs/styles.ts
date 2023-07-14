@@ -8,9 +8,10 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#242323',
   },
-  prevButton:{
-    backgroundColor: '#fff',
+  prevButtonContainer:{
     borderRadius: 50,
+    borderWidth: 1,
+    borderColor: '#fff',
     width: 35,
     height: 35,
     alignItems: 'center',
@@ -45,6 +46,16 @@ const styles = StyleSheet.create({
   lastTexts: {
     fontSize: 14,
     color: '#fff',
+  },
+  input:{
+    color: '#fff',
+    height: 40,
+    width: '100%',
+    alignSelf:'center',
+    backgroundColor: '#000',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 15,
   },
 });
 

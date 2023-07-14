@@ -18,6 +18,8 @@ const Explore = () => {
     price:'',
     owner:'',
     isReserved:'',
+    instructions:'',
+    rules:'',
   }]);
 
   useEffect(() => {
@@ -41,7 +43,11 @@ const Explore = () => {
               address = {item.address}
               image={item.images}
               price={item.price}
+              owner={item.owner}
+              isReserved={item.isReserved}
               description={item.description}
+              instructions={item.instructions}
+              rules={item.rules}
             />
           ))}
       </View>

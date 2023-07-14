@@ -11,6 +11,8 @@ export const addAccomodation = (accomodation) => {
        description: accomodation.description,
        price: accomodation.price,
        images: accomodation.images,
+       rules: accomodation.rules,
+       instructions: accomodation.instructions,
        isReserved: false,
      }).then((snapshot) => snapshot.get()).catch((error) => console.log(error));
 };
