@@ -5,21 +5,25 @@ import ReservationCard from '../../components/ReservationCard';
 import styles from './styles';
 import images from '../../assets';
 
+
+
 const Reservations = () => {
+  
   const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState({
     username: '',
-    walletAddress: '',
+    walletID: '',
+    rewardCounter:0
   });
 
   useEffect(() => {
-    getUser('0xbr498nm23409').then((user) => {
+    getUser('').then((user) => {
       setIsConnected(true);
       setUser(user);
     });
   }, []);
 
-  console.log(user.walletAddress);
+  console.log(user);
   
   return (
     <View style={styles.root}>

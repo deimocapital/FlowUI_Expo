@@ -1,6 +1,14 @@
 import {firebase} from '../../config';
 import {collection, doc, updateDoc, query, where, getFirestore, getDocs} from "firebase/firestore";
 
+export const addUser = (user) => {
+    firebase.firestore()
+      .collection('user')
+      .add({
+        rewardCounter: 0,
+        walletID: user.walletID,
+      }).then((snapshot) => snapshot.get()).catch((error) => console.log(error));
+};
 
 export const getUser = async(walletAddress) => {
     const db = getFirestore();

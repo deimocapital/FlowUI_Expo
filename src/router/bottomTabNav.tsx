@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
@@ -8,10 +8,14 @@ import Reservations from '../screens/Reservations';
 import Rewards from '../screens/Rewards';
 import Profile from '../screens/Profile';
 import Create from '../screens/Create';
+import LogIn from '../screens/LogIn';
 
 const BottomTab = createBottomTabNavigator();
 
+
 const BottomTabNav = () => {
+  
+
   return (
     <BottomTab.Navigator
       screenOptions={{
@@ -59,8 +63,8 @@ const BottomTabNav = () => {
         }}
       />
       <BottomTab.Screen
-        component={Profile}
-        name="Profile"
+        component={LogIn}
+        name="LogIn"
         options={{
           tabBarIcon: ({color}) => (
             <Feather name="user" size={25} color={color} />
