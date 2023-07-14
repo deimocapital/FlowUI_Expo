@@ -9,17 +9,18 @@ const Reservations = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState({
     username: '',
-    walletAddress: '',
+    walletID: '',
+    rewardCounter:0
   });
 
   useEffect(() => {
-    getUser('0xbr498nm23409').then((user) => {
+    getUser('kC7AaPtlUi3dZmBZ2ni4').then((user) => {
       setIsConnected(true);
       setUser(user);
     });
   }, []);
 
-  console.log(user.walletAddress);
+  console.log(user);
   
   return (
     <View style={styles.root}>

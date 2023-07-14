@@ -5,7 +5,7 @@ import styles from './styles';
 import Button from '../../components/Button';
 import { getUser } from '../../utils/UserApi';
 
-const User = () => {
+const LogIn = () => {
   const [isUserConnected, setIsUserConnected] = useState(false);
   const [user, setUser] = useState({
     id: '',
@@ -53,4 +53,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default LogIn;
