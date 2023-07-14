@@ -1,10 +1,20 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
+import * as fcl from "@onflow/fcl/dist/fcl-react-native";
+import {useNavigation} from '@react-navigation/native';
+import "../../../flow/config";
 import styles from './styles';
 import Button from '../../components/Button';
 
-const Profile= () => {
+const Profile= ({route}) => {
+  const navigation = useNavigation();
+  const {userDB} = route.params;
+  const{username, walletID} = userDB;
+  
+  const logout = () => {
+    fcl.unauthenticate();
+    navigation.navigate('LogIn');
+  };
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Profile</Text>
@@ -12,18 +22,18 @@ const Profile= () => {
         <Text style={[styles.title, {fontSize: 19}]}>Address</Text>
         <View style={styles.flowInfoContainer}>
           <View style={styles.innerFlowInfoContainer}>
-            <Text style={styles.titleFlowContainer}>0x43ADJ2</Text>
+            <Text style={styles.titleFlowContainer}>{walletID}</Text>
             <Text style={styles.message}>Copy wallet address</Text>
           </View>
           <View style={styles.buttonFlowContainer}>
-            <Button text='Log out' type='log-out-button' onPress={() => console.warn('Log out')} textStyles={{padding:8}} containerStyles={{borderRadius: 10}} />
+            <Button text='Log out' type='log-out-button' onPress={logout} textStyles={{padding:8}} containerStyles={{borderRadius: 10}} />
           </View>
         </View>
 
         <View style={styles.flowInfoContainer}>
           <View style={styles.innerFlowInfoContainer}>
             <Text style={styles.titleFlowContainer}>Flow Balance</Text>
-            <Text style={styles.message}>150.00</Text>
+            <Text style={styles.message}>500.00</Text>
           </View>
         </View>
       </View>

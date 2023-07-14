@@ -32,7 +32,27 @@ const styles = StyleSheet.create({
     color: '#fff',
     alignSelf: 'center',
     textAlign: 'center',
-  }
+  },
+  blocto:{
+    backgroundColor: '#3bff86',
+    marginVertical: 10,
+    height: 35,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: '#a15e1b',
+  },
+  input:{
+    color: '#fff',
+    height: 40,
+    width: '100%',
+    alignSelf:'center',
+    backgroundColor: '#000',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 15,
+  },
 });
 
 export default styles;

@@ -8,6 +8,7 @@ import Reservations from '../screens/Reservations';
 import Rewards from '../screens/Rewards';
 import Profile from '../screens/Profile';
 import Create from '../screens/Create';
+import LogIn from '../screens/LogIn';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -59,8 +60,8 @@ const BottomTabNav = () => {
         }}
       />
       <BottomTab.Screen
-        component={Profile}
-        name="Profile"
+        component={LogIn}
+        name="LogIn"
         options={{
           tabBarIcon: ({color}) => (
             <Feather name="user" size={25} color={color} />

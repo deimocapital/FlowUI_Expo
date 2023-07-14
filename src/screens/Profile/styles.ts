@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   message:{
     fontSize: 14,
     color: '#fff',
-    alignSelf: 'center',
+    alignSelf: 'left',
     textAlign: 'center',
   }
 });

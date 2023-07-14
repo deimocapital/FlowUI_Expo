@@ -6,6 +6,7 @@ import BottomTabNav from './bottomTabNav';
 
 import Explore from '../screens/Explore';
 import RentalSpecs from '../screens/RentalSpecs';
+import Profile from '../screens/Profile';
 
 const Root = createStackNavigator();
 
@@ -20,7 +21,9 @@ const Router = () => {
           options={{title: 'Explore'}}
         />
         <Root.Screen component={RentalSpecs} name="RentalSpecs" />
+        <Root.Screen component={Profile} name="Profile" />
       </Root.Navigator>
+      
     </NavigationContainer>
   );
 };
