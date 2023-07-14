@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import { UserContext } from '../../context/UserContext';
 
 import { addUser } from '../../utils/UserApi';
 import styles from './styles';
@@ -9,14 +10,18 @@ import "../../../flow/config";
 import * as fcl from "@onflow/fcl/dist/fcl-react-native";
 
 const LogIn = () => {
-  const [user, setUser] = useState({loggedIn: null});
+  const [usuario, setUsuario] = useState({loggedIn: null});
+  const { setUser } = useContext(UserContext);
+
   const imageAddress = 'https://classicalarchitectures.weebly.com/uploads/1/2/6/8/126890479/sculptural-home-plays-volumes-curvy-roofline-1-exterior_orig.jpg';
 
-  useEffect(() => fcl.currentUser.subscribe(setUser), []);
+  useEffect(() => fcl.currentUser.subscribe(setUsuario), []);
   const { services, isLoading, authenticateService } = fcl.useServiceDiscovery({ fcl });
 
-  if(user.loggedIn) addUser(user.addr);
-  console.log(user.addr);
+  if(usuario.loggedIn){
+    setUser(usuario.addr);
+    addUser(usuario.addr);
+  };
   
 
   const logout = () => {
@@ -25,14 +30,14 @@ const LogIn = () => {
 
   return (
      <View style={styles.root}>
-      {(user.loggedIn) ? (
+      {(usuario.loggedIn) ? (
         <View style={{padding:10}}>
         <Text style={styles.title}>Profile</Text>
           <Text style={[styles.title, {fontSize: 19}]}>Address</Text>
           <View style={styles.flowInfoContainer}>
             <View style={styles.innerFlowInfoContainer}>
-              <Text style={styles.titleFlowContainer}>{user.addr}</Text>
-              <TouchableOpacity onPress={() => Clipboard.setStringAsync(user.addr)}>
+              <Text style={styles.titleFlowContainer}>{usuario.addr}</Text>
+              <TouchableOpacity onPress={() => Clipboard.setStringAsync(usuario.addr)}>
                 <Text style={styles.message}>Copy wallet address</Text>
               </TouchableOpacity>
             </View>
