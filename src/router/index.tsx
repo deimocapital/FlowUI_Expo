@@ -14,7 +14,7 @@ const Root = createStackNavigator();
 const Router = () => {
   const [user, setUser] = useState('');
 
-  console.log('Router ' + user);
+  // console.log('Router ' + user);
   
   return (
     <UserContext.Provider value={{user, setUser}}>

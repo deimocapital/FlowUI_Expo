@@ -1,13 +1,17 @@
 import {firebase} from '../../config';
-import {collection, doc, updateDoc, query, where, getFirestore, getDocs} from "firebase/firestore";
+import {collection, doc, setDoc, updateDoc, query, where, getFirestore, getDocs} from "firebase/firestore";
 
-export const addUser = (walletID) => {
-        firebase.firestore()
-        .collection('user')
-        .add({
-        rewardCounter: 0,
-        walletID: walletID,
-        }).then((snapshot) => snapshot.get()).catch((error) => console.log(error)); 
+export const addUser = async(walletID) => {
+        // firebase.firestore()
+        // .collection('user')
+        // .add({
+        // rewardCounter: 0,
+        // walletID: walletID,
+        // }).then((snapshot) => snapshot.get()).catch((error) => console.log(error)); 
+        await setDoc(doc(getFirestore(), "user", walletID), {
+            rewardCounter: 0,
+            walletID: walletID,
+        }, { merge: true });
 };
 
 export const getUser = async(walletID) => {

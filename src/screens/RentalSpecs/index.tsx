@@ -1,29 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, Pressable, ScrollView, TextInput, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+
+import { UserContext } from '../../context/UserContext';
 import { addReservation } from '../../utils/ReservationApi';
 import styles from './styles';
 import Button from '../../components/Button';
-import ImageCarousel from '../../components/ImageCarousel';
 
 const RentalSpecs = ({route}) => {
+  const user = useContext(UserContext);
   const navigation = useNavigation();
   const[arrivalDate, setArrivalDate] = useState('');
   const[departureDate, setDepartureDate] = useState('');
   const[guests, setGuests] = useState('1');
+
   const onPress = () => {
     navigation.navigate('Explore');
   };
 
+  const visitor = user.user;
+  
  const {title, country, address, image, price, owner, description, instructions, rules} = route.params;
 
  //const dates = {arrivalDat:'Tuesday, July 30, 2023', departureDat:'Wedenesday, July 31, 2023'};
  const dates = {arrivalDate, departureDate};
 
-  const reservation = {dates, owner, title, country, address, image, price, description, guests, instructions, rules};
-
-  console.log(reservation);
-  
+  const reservation = {dates, owner, title, country, address, image, price, description, guests, instructions, rules, visitor};
 
   return (
     <ScrollView style={styles.root}>
@@ -113,7 +115,10 @@ const RentalSpecs = ({route}) => {
       <Button
         text="Make reservation"
         type="make-reservation"
-        onPress={()=> addReservation(reservation)}
+        onPress={()=> {
+          addReservation(reservation);
+          navigation.navigate('Explore');
+        }}
         containerStyles={{
           width: '100%',
           borderRadius: 6,
