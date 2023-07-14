@@ -5,7 +5,6 @@ export const addUser = (user) => {
     firebase.firestore()
       .collection('user')
       .add({
-        username: user.username,
         rewardCounter: 0,
         walletID: user.walletID,
       }).then((snapshot) => snapshot.get()).catch((error) => console.log(error));

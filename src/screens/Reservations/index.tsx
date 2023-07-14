@@ -5,7 +5,10 @@ import ReservationCard from '../../components/ReservationCard';
 import styles from './styles';
 import images from '../../assets';
 
+
+
 const Reservations = () => {
+  
   const [isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState({
     username: '',
@@ -14,7 +17,7 @@ const Reservations = () => {
   });
 
   useEffect(() => {
-    getUser('kC7AaPtlUi3dZmBZ2ni4').then((user) => {
+    getUser('').then((user) => {
       setIsConnected(true);
       setUser(user);
     });

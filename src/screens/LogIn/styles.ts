@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   message:{
     fontSize: 14,
     color: '#fff',
-    alignSelf: 'center',
+    alignSelf: 'left',
     textAlign: 'center',
   },
   blocto:{
@@ -43,15 +43,31 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#a15e1b',
   },
-  input:{
-    color: '#fff',
-    height: 40,
+  flowInfoContainer:{
+    flexDirection: 'row',
     width: '100%',
-    alignSelf:'center',
+    height: 85,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#3bff86',
     backgroundColor: '#000',
-    borderRadius: 8,
-    padding: 10,
-    marginBottom: 15,
+    marginTop: 10,
+    justifyContent: 'space-between',
+    marginBottom: 7,
+  },
+  innerFlowInfoContainer:{
+    flexDirection: 'column',
+    justifyContent:'space-between',
+    padding: 15,
+  },
+  titleFlowContainer:{
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  buttonFlowContainer:{
+    alignSelf: 'center',
+    marginRight: 15,
   },
 });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
@@ -12,7 +12,10 @@ import LogIn from '../screens/LogIn';
 
 const BottomTab = createBottomTabNavigator();
 
+
 const BottomTabNav = () => {
+  
+
   return (
     <BottomTab.Navigator
       screenOptions={{
