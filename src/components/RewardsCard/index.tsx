@@ -1,9 +1,10 @@
+import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
-import React from 'react';
 
 import styles from './styles';
 
 const RewardsCard = ({level, rewards, image}) => {
+  const [progression, setProgression] = useState(0);
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
@@ -11,7 +12,7 @@ const RewardsCard = ({level, rewards, image}) => {
       </View>
 
       <View style={styles.infoContainer}>
-        <Text style={styles.level}>Level {level}</Text>
+        <Text style={styles.level}>Make {level} more reservations for prime badge</Text>
 
         <Text style={styles.levelText}>
           Missing {level} more reserves for next level
@@ -21,7 +22,8 @@ const RewardsCard = ({level, rewards, image}) => {
           <View style={styles.innerProgressionBar} />
           <Text style={styles.progression}>2/5</Text>
         </View>
-
+        {!progression ? <Text style={styles.levelText}> Keep grinding Bro</Text>:
+        
         <View style={styles.rewardsContainer}>
           <Text style={styles.rewardTitle}>Your current rewards</Text>
           <Text style={styles.rewards}>
@@ -32,6 +34,7 @@ const RewardsCard = ({level, rewards, image}) => {
             Access to exclusive homes and discounts
           </Text>
         </View>
+        }
       </View>
     </View>
   );

@@ -24,14 +24,13 @@ const styles = StyleSheet.create({
   },
   cardBody: {
     flex: 1,
-    flexGrow: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
   },

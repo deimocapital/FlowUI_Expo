@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   level: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '600',
     marginBottom: 10,
   },

@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
-    display: 'flex',
     padding: 10,
     backgroundColor: '#242323',
   },

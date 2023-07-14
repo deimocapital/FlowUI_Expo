@@ -1,28 +1,52 @@
-import {View, Text} from 'react-native';
-import React from 'react';
-
+import React, {useState} from 'react';
+import {View, Text, Pressable, ScrollView, TextInput} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import { addReservation } from '../../utils/ReservationApi';
+import DatePicker from '../../components/DatePicker';
 import styles from './styles';
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 
 import places from '../../data/places';
 
-const RentalSpecs = () => {
+const RentalSpecs = ({route}) => {
+  const navigation = useNavigation();
+  const[arrivalDate, setArrivalDate] = useState(new Date());
+  const[departureDate, setDepartureDate] = useState(new Date());
+  const[guests, setGuests] = useState('1');
+  const onPress = () => {
+    navigation.navigate('Explore');
+  };
+
+ const {title, country, address, image, price, owner, description, instructions, rules} = route.params;
+
+ const dates = {arrivalDat:'Tuesday, July 30, 2023', departureDat:'Wedenesday, July 31, 2023'};
+
+  const reservation = {dates, owner, title, country, address, image, price, description, guests, instructions, rules};
+
+  console.log(reservation);
+  
+
   return (
-    <View style={styles.root}>
-      <View style={styles.headingContainer}>
-        <Text style={styles.title}>Mazatlan Tree House</Text>
-        <Text style={styles.location}>Mazatlan, Mexico</Text>
+    <ScrollView style={styles.root}>
+      <View style={{flexDirection:'row', marginBottom:20}}>
+        <View style={styles.prevButtonContainer}>
+          <Pressable onPress={onPress}>
+            <Text style={{color: '#fff'}}>←</Text>
+          </Pressable>
+        </View>
+        <View style={styles.headingContainer}>
+
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.location}>{country}</Text>
+        </View>
       </View>
       <Text style={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        {description}
       </Text>
 
       {/* Image Carousel */}
-      <ImageCarousel images={places.images} />
+      <ImageCarousel images={places[0].images} />
 
       <View
         style={{
@@ -33,25 +57,54 @@ const RentalSpecs = () => {
         }}
       />
       <View style={{margin: 5}}>
-        <Text style={styles.lastTitles}>Cost</Text>
-        <Text style={styles.lastTexts}>$400 FLOW / night</Text>
+        <View style={{marginVertical:10}}>
+          <Text style={styles.lastTitles}>Cost</Text>
+          <Text style={styles.lastTexts}>${price} FLOW / night</Text>
+        </View>
+        <View style={{marginVertical:10}}>
+          <Text style={styles.lastTitles}>Location</Text>
+          <Text style={styles.lastTexts}>{address}</Text>
+        </View>
 
-        <Text style={styles.lastTitles}>Location</Text>
-        <Text style={styles.lastTexts}>Lerdo 16, Col. Barranca Seca</Text>
+        <View style={{marginVertical:10}}>
+          <Text style={styles.lastTitles}>Rules</Text>
+          <Text style={styles.lastTexts}>{rules}</Text>
+        </View>
 
-        <Text style={styles.lastTitles}>Choose Dates</Text>
+        <View style={{marginVertical:10}}>
+          <Text style={styles.lastTitles}>Instructions</Text>
+          <Text style={styles.lastTexts}>{instructions}</Text>
+        </View>
+
+        <View style={{marginVertical:10}}>
+          <Text style={styles.lastTitles}>Choose Dates</Text>
+          <DatePicker date={arrivalDate} setDate={setArrivalDate} />
+          <DatePicker date={departureDate} setDate={setDepartureDate} />
+        </View>
+
+        <Text style={styles.lastTitles}>Number of Guests</Text>
+        <TextInput 
+          placeholder="Enter # of guests" 
+          value={guests}
+          onChangeText={setGuests}
+          style={[styles.input, {marginTop: 10}]} 
+          keyboardType="number-pad" 
+          placeholderTextColor="#7e7f80" 
+          selectionColor="#fff"  
+        />
+
       </View>
       <Button
         text="Make reservation"
         type="make-reservation"
-        onPress={() => {}}
+        onPress={()=> addReservation(reservation)}
         containerStyles={{
           width: '100%',
           borderRadius: 6,
           marginVertical: 15,
         }}
       />
-    </View>
+    </ScrollView>
   );
 };
 

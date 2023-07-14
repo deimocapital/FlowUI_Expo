@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   image: {
     margin: 10,
     height: 250,
-    resizeMode: 'full',
     borderRadius: 15,
   },
   dots: {
