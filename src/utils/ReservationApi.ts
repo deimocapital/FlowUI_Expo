@@ -16,6 +16,7 @@ export const addReservation = (reservation) => {
        address: reservation.address, 
        image: reservation.image,
        dates: reservation.dates,
+       price: reservation.price,
        confirmationCode: confirmationCode,
        instructions: reservation.instructions,
        rules: reservation.rules,
