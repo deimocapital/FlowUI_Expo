@@ -47,16 +47,21 @@ export const getAndUpdateCounter = (walletAddress) => {
     })
 }
 
+export const getAndUpdatePrimeUser = (walletAddress) => {
+    const db = getFirestore(); // initialize Firestore
+    const docRef = doc(db, "user", walletAddress);
+
+    const data = {
+        isPrimeUser: true
+    }
+
+    updateDoc(docRef, data)
+    .then(docRef => {
+        console.log("Value of an Existing Document Field has been updated");
+    })
+    .catch(error => {
+        console.log(error);
+    })
+};
 
 
-
-
-// import {getFirestore, doc, getDoc} from "firebase/firestore";
-
-
-// export const getUser = async(walletAddress) => {
-//     const db = getFirestore();
-//     const docRef = doc(db,"user","goCtvYZrmzPtd0otCAb7");
-//     const docSnap = await getDoc(docRef);
-//    return docSnap.data();
-// };

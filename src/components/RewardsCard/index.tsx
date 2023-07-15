@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, Image} from 'react-native';
 import {UserContext} from '../../context/UserContext';
 import {getNFT} from "../../../cadence/scripts/getNFT";
+import { getAndUpdatePrimeUser } from '../../utils/UserApi';
 import {createNFT} from "../../../cadence/transactions/createNFT";
 import { getUser } from '../../utils/UserApi';
 import images from '../../assets';
@@ -51,6 +52,7 @@ const RewardsCard = ({level, image}) => {
     
     setNftUrl(result[1]);
     setShowPerks(true);
+    getAndUpdatePrimeUser(user.user);
   };
 
   const getPercentage = (progression) => {

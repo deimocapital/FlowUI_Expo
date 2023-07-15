@@ -4,6 +4,7 @@ import * as Clipboard from 'expo-clipboard';
 import { UserContext } from '../../context/UserContext';
 
 import { addUser } from '../../utils/UserApi';
+import Entypo from 'react-native-vector-icons/Entypo';
 import styles from './styles';
 import Button from '../../components/Button';
 import "../../../flow/config";
@@ -56,6 +57,20 @@ const LogIn = () => {
               </View>
             </View>
           </View>
+
+            <Text style={[styles.title, {fontSize: 19}]}>Settings</Text>
+            <View style={styles.settingContainer}>
+              <View style={styles.personalInformationContainer}>
+                  <Text style={styles.message}>Personal Information</Text>
+                  <Entypo name='chevron-right' size={20} color='#fff' />
+              </View>
+            </View>
+            <View style={styles.settingContainer}>
+              <View style={styles.personalInformationContainer}>
+                  <Text style={styles.message}>Send $FLOW</Text>
+                  <Entypo name='chevron-right' size={20} color='#fff' />
+              </View>
+            </View>
         </View>
       ):(
         <>

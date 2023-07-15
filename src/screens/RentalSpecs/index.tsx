@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, Pressable, ScrollView, TextInput, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -6,10 +6,17 @@ import { UserContext } from '../../context/UserContext';
 import { addReservation } from '../../utils/ReservationApi';
 import styles from './styles';
 import Button from '../../components/Button';
+import { getUser } from '../../utils/UserApi';
 
 const RentalSpecs = ({route}) => {
   const user = useContext(UserContext);
   const navigation = useNavigation();
+  const [usuario, setUsuario] = useState({
+    rewardCounter: 0,
+    isPrimeUser: false,
+    walletID: ''
+  });
+
   const[arrivalDate, setArrivalDate] = useState('');
   const[departureDate, setDepartureDate] = useState('');
   const[guests, setGuests] = useState('1');
@@ -17,6 +24,13 @@ const RentalSpecs = ({route}) => {
   const onPress = () => {
     navigation.navigate('Explore');
   };
+
+  useEffect(() => {
+    getUser(user.user).then((user) => {
+      setUsuario(user);
+    });
+  }, []);
+
 
   const visitor = user.user;
   
@@ -26,6 +40,8 @@ const RentalSpecs = ({route}) => {
  const dates = {arrivalDate, departureDate};
 
   const reservation = {dates, owner, title, country, address, image, price, description, guests, instructions, rules, visitor};
+
+  const finalPrice = Number(price) + 10;
 
   return (
     <ScrollView style={styles.root}>
@@ -98,6 +114,7 @@ const RentalSpecs = ({route}) => {
             placeholderTextColor="#7e7f80" 
             selectionColor="#fff"  
           />
+
         </View>
 
         <Text style={styles.lastTitles}>Number of Guests</Text>
@@ -110,6 +127,27 @@ const RentalSpecs = ({route}) => {
           placeholderTextColor="#7e7f80" 
           selectionColor="#fff"  
         />
+        <Text style={[styles.lastTitles, {marginBottom:5}]}>Payment</Text>
+
+        <View style={{marginVertical: 5 ,flexDirection: 'row', justifyContent:'space-between'}}>
+          <Text style={styles.description}>price</Text>
+          <Text style={styles.description}>$ {price}</Text>
+        </View>
+
+        <View style={{marginBottom: 5 ,flexDirection: 'row', justifyContent:'space-between'}}>
+          <Text style={styles.description}>FlowAirBnB fee</Text>
+          <Text style={styles.description}>$10</Text>
+        </View>
+
+        <View style={{marginBottom: 5 ,flexDirection: 'row', justifyContent:'space-between'}}>
+          <Text style={styles.description}>Total</Text>
+          <Text style={styles.description}>$ {finalPrice}</Text>
+        </View>
+
+        <View style={{marginBottom: 5 ,flexDirection: 'row', justifyContent:'space-between'}}>
+          <Text style={styles.description}>Total - <Text style={{color:'#3bff86'}}>5% reward</Text> </Text>
+          <Text style={[styles.description , {color:'#3bff86'}]}>$ {finalPrice - (finalPrice * .05)}</Text>
+        </View>
 
       </View>
       <Button
@@ -121,7 +159,8 @@ const RentalSpecs = ({route}) => {
           navigation.navigate('Explore');
         }}
         containerStyles={{
-          width: '100%',
+          width: '97%',
+          alignSelf: 'center',
           borderRadius: 6,
           marginVertical: 15,
         }}
