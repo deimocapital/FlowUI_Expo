@@ -4,7 +4,7 @@ export const addAccomodation = (accomodation) => {
    firebase.firestore()
      .collection('accomodations')
      .add({
-       owner: '0x768nbme12wres',
+       owner: accomodation.owner,
        location: accomodation.location,
        houseTitle: accomodation.houseTitle,
        address: accomodation.address,

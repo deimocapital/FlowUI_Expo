@@ -3,7 +3,8 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   card: {
     width: '93%',
-    height: '32%',
+    height:'auto',
+    marginBottom: 10,
     borderRadius: 18,
     borderColor: '#3bff86',
     borderWidth: 2,

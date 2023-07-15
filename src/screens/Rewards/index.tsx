@@ -1,5 +1,6 @@
+import {View, Text, useContext} from 'react-native';
+
 import React from 'react';
-import {View, Text} from 'react-native';
 
 import RewardsCard from '../../components/RewardsCard';
 
@@ -11,12 +12,7 @@ const Rewards = () => {
     <View style={styles.root}>
       <Text style={styles.title}>Rewards</Text>
       <RewardsCard
-        level="3"
-        rewards={{
-          reservationDiscounts: '5',
-          prioritySupport: true,
-          accessToExclusiveHomes: true,
-        }}
+        level="1"
         image={images.space}
       />
     </View>

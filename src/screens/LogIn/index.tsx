@@ -1,18 +1,29 @@
-import React, {useState, useEffect} from 'react';
-import { View, Text, Image, Pressable } from 'react-native';
-import * as fcl from "@onflow/fcl/dist/fcl-react-native";
+import React, {useState, useEffect, useContext} from 'react';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
+import { UserContext } from '../../context/UserContext';
 
 import { addUser } from '../../utils/UserApi';
+import Entypo from 'react-native-vector-icons/Entypo';
 import styles from './styles';
-import "../../../flow/config";
 import Button from '../../components/Button';
+import "../../../flow/config";
+import * as fcl from "@onflow/fcl/dist/fcl-react-native";
 
 const LogIn = () => {
-  const [user, setUser] = useState({loggedIn: null});
-  const [toggle, setToggle] = useState(false);
+  const [usuario, setUsuario] = useState({loggedIn: null});
+  const { setUser } = useContext(UserContext);
+
   const imageAddress = 'https://classicalarchitectures.weebly.com/uploads/1/2/6/8/126890479/sculptural-home-plays-volumes-curvy-roofline-1-exterior_orig.jpg';
 
-  useEffect(() => fcl.currentUser.subscribe(setUser), []);
+  useEffect(() => fcl.currentUser.subscribe(setUsuario), []);
+  const { services, isLoading, authenticateService } = fcl.useServiceDiscovery({ fcl });
+
+  if(usuario.loggedIn){
+    setUser(usuario.addr);
+    addUser(usuario.addr);
+  };
+  
 
   const logout = () => {
     fcl.unauthenticate();
@@ -20,14 +31,16 @@ const LogIn = () => {
 
   return (
      <View style={styles.root}>
-      {(user.loggedIn) ? (
+      {(usuario.loggedIn) ? (
         <View style={{padding:10}}>
         <Text style={styles.title}>Profile</Text>
           <Text style={[styles.title, {fontSize: 19}]}>Address</Text>
           <View style={styles.flowInfoContainer}>
             <View style={styles.innerFlowInfoContainer}>
-              <Text style={styles.titleFlowContainer}>aaa</Text>
-              <Text style={styles.message}>Copy wallet address</Text>
+              <Text style={styles.titleFlowContainer}>{usuario.addr}</Text>
+              <TouchableOpacity onPress={() => Clipboard.setStringAsync(usuario.addr)}>
+                <Text style={styles.message}>Copy wallet address</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.buttonFlowContainer}>
               <Button text='Log out' type='log-out-button' onPress={logout} textStyles={{padding:8}} containerStyles={{borderRadius: 10}} />
@@ -36,14 +49,33 @@ const LogIn = () => {
           <View style={styles.flowInfoContainer}>
             <View style={styles.innerFlowInfoContainer}>
               <Text style={styles.titleFlowContainer}>Flow Balance</Text>
-              <Text style={styles.message}>500.00</Text>
+              <View style={{flexDirection:'row', marginTop:8}}>
+                {services.map((service, index) => (
+                  <Image key={index} style={styles.imageProviders} source={{ uri: service?.provider?.icon }} />
+                ))}
+               <Text style={[styles.message, {alignSelf:'center'}]}>210 $FLOW</Text>
+              </View>
             </View>
           </View>
+
+            <Text style={[styles.title, {fontSize: 19}]}>Settings</Text>
+            <View style={styles.settingContainer}>
+              <View style={styles.personalInformationContainer}>
+                  <Text style={styles.message}>Personal Information</Text>
+                  <Entypo name='chevron-right' size={20} color='#fff' />
+              </View>
+            </View>
+            <View style={styles.settingContainer}>
+              <View style={styles.personalInformationContainer}>
+                  <Text style={styles.message}>Send $FLOW</Text>
+                  <Entypo name='chevron-right' size={20} color='#fff' />
+              </View>
+            </View>
         </View>
       ):(
         <>
           <View style={styles.imageContainer}>
-              <Image source={{uri:imageAddress}} style={styles.cardImage} />
+            <Image source={{uri:imageAddress}} style={styles.cardImage} />
             </View>
           <View style={styles.headingContainer}>
               <Text style={styles.title}>Welcome to FlowAirBnB!</Text>
@@ -52,10 +84,15 @@ const LogIn = () => {
               </View>
           </View>
             <View style={{marginTop: 40, width:'95%', alignSelf: 'center'}}>
-                <Pressable style={styles.blocto}>
-                <Text>Login with </Text>
-                  <fcl.ServiceDiscovery fcl={fcl}  />
-                </Pressable>
+              {!isLoading && services.map((service, index) => (
+                <TouchableOpacity key={index} style={styles.blocto}  onPress={() => authenticateService(service)}>
+                  <View style={styles.providersContainer}>
+                    <Image style={styles.imageProviders} source={{ uri: service?.provider?.icon }} />
+                    <Text style={{color:'#000', fontWeight:'bold'}}>{service?.provider?.name}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+                
             </View>
         </>
       )}

@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     marginVertical: 12,
     marginHorizontal: 8,
-    backgroundColor: '#0a0909',
+    backgroundColor: '#000',
+    borderColor: '#3bff86',
+    borderWidth: 4,
     alignItems: 'center',
     flexDirection: 'column',
   },
@@ -28,9 +30,9 @@ const styles = StyleSheet.create({
   },
   level: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
-    marginBottom: 10,
+    marginBottom: 25,
   },
   infoContainer: {
     width: '90%',
@@ -53,7 +55,6 @@ const styles = StyleSheet.create({
   },
   innerProgressionBar: {
     height: 25,
-    width: '40%',
     borderRadius: 13,
     backgroundColor: '#3bff86',
   },

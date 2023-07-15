@@ -69,6 +69,33 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginRight: 15,
   },
+  providersContainer:{
+    flexDirection:'row', 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imageProviders:{
+    height: 20,
+    width: 20,
+    marginTop:3,
+    marginBottom:2,
+    marginRight:5,
+  },
+  settingContainer:{
+    marginTop: 10,
+    borderColor: '#3bff86',
+    borderWidth: 1,
+    width: '100%',
+    height: 50,
+    backgroundColor: '#000',
+    borderRadius: 10,
+  },
+  personalInformationContainer:{
+    flexDirection: 'row',
+    padding: 15,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
