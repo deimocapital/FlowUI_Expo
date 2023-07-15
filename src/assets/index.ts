@@ -3,6 +3,7 @@ import house2 from './house_2.jpeg';
 import house3 from './house_3.jpeg';
 import space from './space.jpeg';
 import space2 from './space_2.jpeg';
+import bronzeCard from './bronzeCard.png';
 
 export default {
   house1,
@@ -10,4 +11,5 @@ export default {
   house3,
   space,
   space2,
+  bronzeCard,
 };

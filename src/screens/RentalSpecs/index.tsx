@@ -117,6 +117,7 @@ const RentalSpecs = ({route}) => {
         type="make-reservation"
         onPress={()=> {
           addReservation(reservation);
+          // makeReservationAndPay();
           navigation.navigate('Explore');
         }}
         containerStyles={{

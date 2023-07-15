@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     borderColor: '#3bff86',
     borderWidth: 2,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   cardElevated: {
     backgroundColor: '#000',
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   miscContainer: {
-    flex: 0.9,
+    flex: 0.85,
     padding: 10,
   },
   title: {

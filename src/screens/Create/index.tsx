@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import {View, Text, TextInput, ScrollView} from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {GOOGLE_MAPS_APIKEY} from "@env";
+import {useNavigation} from '@react-navigation/native';
 
 import { UserContext } from '../../context/UserContext';
 import Button from '../../components/Button';
@@ -12,8 +13,10 @@ import { addAccomodation } from '../../utils/AccomodationApi';
 import styles from './styles';
 
 const Create = () => {
-  const owner = useContext(UserContext);
-  
+  const user = useContext(UserContext);
+  const navigation = useNavigation();
+  const owner = user.user;
+
   const [location, setLocation] = useState("");
   const [houseTitle, setHouseTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -128,7 +131,13 @@ const Create = () => {
         />
       </View>
       <View style={{marginBottom: 35, alignSelf:'flex-end'}}>
-        <Button text='Create Accomodation' onPress={()=> addAccomodation(information)} containerStyles={{borderRadius:5, padding:5}} />
+        <Button text='Create Accomodation' onPress={()=>{ 
+          addAccomodation(information);
+          navigation.navigate('Explore');
+        } 
+      }
+          containerStyles={{borderRadius:5, padding:5}} 
+          />
       </View>
     </ScrollView>
   );

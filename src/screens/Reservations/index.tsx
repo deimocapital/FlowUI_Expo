@@ -39,6 +39,8 @@ const Reservations = () => {
         <View style={styles.cardsContainer}>
           {reservations.map((reservation, i) => (
             <ReservationCard
+              confirmationCode={reservation.confirmationCode}
+              guests={reservation.guests}
               title={reservation.houseTitle}
               place={reservation.address}
               dates={reservation.dates.arrivalDate}

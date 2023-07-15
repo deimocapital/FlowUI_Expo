@@ -9,7 +9,8 @@ export const addUser = async(walletID) => {
         // walletID: walletID,
         // }).then((snapshot) => snapshot.get()).catch((error) => console.log(error)); 
         await setDoc(doc(getFirestore(), "user", walletID), {
-            rewardCounter: 0,
+            rewardCounter: 3,
+            isPrimeUser: false,
             walletID: walletID,
         }, { merge: true });
 };
@@ -24,7 +25,7 @@ export const getUser = async(walletID) => {
     querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     // console.log(doc.id, " => ", doc.data());
-    user = {doc: doc.id , data: doc.data()};
+    user = doc.data();
     });
     return user;
 };

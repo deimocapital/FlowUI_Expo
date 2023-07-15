@@ -50,9 +50,9 @@ const LogIn = () => {
               <Text style={styles.titleFlowContainer}>Flow Balance</Text>
               <View style={{flexDirection:'row', marginTop:8}}>
                 {services.map((service, index) => (
-                  <Image style={styles.imageProviders} source={{ uri: service?.provider?.icon }} />
+                  <Image key={index} style={styles.imageProviders} source={{ uri: service?.provider?.icon }} />
                 ))}
-               <Text style={[styles.message, {alignSelf:'center'}]}>500.00</Text>
+               <Text style={[styles.message, {alignSelf:'center'}]}>210 $FLOW</Text>
               </View>
             </View>
           </View>
