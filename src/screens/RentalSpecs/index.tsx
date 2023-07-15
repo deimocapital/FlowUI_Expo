@@ -42,6 +42,13 @@ const RentalSpecs = ({route}) => {
   const reservation = {dates, owner, title, country, address, image, price, description, guests, instructions, rules, visitor};
 
   const finalPrice = Number(price) + 10;
+  const finalPriceDiscount = (Number(price) + 10) - (Number(price) * 0.05);
+
+  if(usuario.isPrimeUser) {
+    reservation.price = finalPriceDiscount;
+  } else{
+    reservation.price = finalPrice;
+  }
 
   return (
     <ScrollView style={styles.root}>
@@ -145,8 +152,13 @@ const RentalSpecs = ({route}) => {
         </View>
 
         <View style={{marginBottom: 5 ,flexDirection: 'row', justifyContent:'space-between'}}>
-          <Text style={styles.description}>Total - <Text style={{color:'#3bff86'}}>5% reward</Text> </Text>
-          <Text style={[styles.description , {color:'#3bff86'}]}>$ {finalPrice - (finalPrice * .05)}</Text>
+
+          {usuario.isPrimeUser && (
+            <>
+            <Text style={styles.description}>Total - <Text style={{color:'#3bff86'}}>5% reward</Text> </Text>
+            <Text style={[styles.description , {color:'#3bff86'}]}>$ {finalPriceDiscount}</Text>
+            </>
+          )}
         </View>
 
       </View>
