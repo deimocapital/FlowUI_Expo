@@ -11,6 +11,7 @@ import Button from '../../components/Button';
 
 import "../../../flow/config";
 import * as fcl from "@onflow/fcl/dist/fcl-react-native";
+import { query } from "@onflow/fcl";
 
 const LogIn = () => {
   const [usuario, setUsuario] = useState<CurrentUser | null>({loggedIn: null});
@@ -19,6 +20,7 @@ const LogIn = () => {
 
   const imageAddress = 'https://classicalarchitectures.weebly.com/uploads/1/2/6/8/126890479/sculptural-home-plays-volumes-curvy-roofline-1-exterior_orig.jpg';
 
+  const [balance, setBalance] = useState(null);
   useEffect(() => fcl.currentUser.subscribe(setUsuario), []);
   const { services, isLoading, authenticateService } = fcl.useServiceDiscovery({ fcl });
 
@@ -31,6 +33,29 @@ const LogIn = () => {
   
   const logout = () => {
     fcl.unauthenticate();
+  };
+  
+
+  const getFlowBalance = async () => {
+    let address = usuario.addr;
+    const cadence = `
+    import FungibleToken from 0x9a0766d93b6608b7
+    import FlowToken from 0x7e60df042a9c0868
+  
+      pub fun main(address: Address): UFix64 {
+        let account = getAccount(address)
+  
+        let vaultRef = account.getCapability(/public/flowTokenBalance)
+          .borrow<&FlowToken.Vault{FungibleToken.Balance}>()
+          ?? panic("Could not borrow Balance reference to the Vault")
+  
+        return vaultRef.balance
+      }
+    `;
+    const args = (arg, t) => [arg(address, t.Address)];
+    const balance = await query({ cadence, args });
+    console.log({ balance });
+    setBalance(balance);
   };
 
   return (
@@ -57,8 +82,11 @@ const LogIn = () => {
                 {services.map((service, index) => (
                   <Image key={index} style={styles.imageProviders} source={{ uri: service?.provider?.icon }} />
                 ))}
-               <Text style={[styles.message, {alignSelf:'center'}]}>{(account?.balance / 2 ** 10).toFixed(2)} $FLOW</Text>
+               <Text style={[styles.message, {alignSelf:'center'}]}>{(balance / 1).toFixed(2)} $FLOW</Text>
               </View>
+            </View>
+            <View style={styles.buttonFlowContainer}>
+              <Button text='Reload Balance' type='log-out-button' onPress={getFlowBalance} textStyles={{padding:8}} containerStyles={{borderRadius: 10}} />
             </View>
           </View>
 
