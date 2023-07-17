@@ -2,7 +2,7 @@
 ### Floway
 "Empowering Betting with Decentralization: Unleash Control, Transparency, and Expansion across NBA, NFL, and More on the Flow Blockchain!"
 
-##Technology Stack
+## Technology Stack
 Cadence
 React Native Expo
 Firebase
