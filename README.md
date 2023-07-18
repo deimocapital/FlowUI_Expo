@@ -4,7 +4,7 @@
 Seamless Accommodation Reservations on Flow: Unlocking the Future of Dapp Bookings with Cadence
 
 ## Quick links
-[*Pitch Deck*]()
+[*Pitch Deck*](https://www.canva.com/design/DAFo7zKF0qE/DcG3WOrIgyRgOpjV6K1CCw/edit?utm_content=DAFo7zKF0qE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 [*Demo Video*](https://youtu.be/gEzGY7CNg0o)
 
