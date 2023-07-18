@@ -3,6 +3,11 @@
 # Floway
 Seamless Accommodation Reservations on Flow: Unlocking the Future of Dapp Bookings with Cadence
 
+## Quick links
+[*Pitch Deck*]()
+
+[*Demo Video*](https://youtu.be/gEzGY7CNg0o)
+
 ## Technology Stack
 Cadence<br>
 React Native Expo<br>
