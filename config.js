@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import {GOOGLE_MAPS_APIKEY, FIREBASE_APP_ID,FIREBASE_MEASUREMENT_ID, DATABASE_URL, FIREBASE_MESSAGING_SENDER_ID} from "@env";
 
+console.log('');
 
 const firebaseConfig = {
     apiKey: GOOGLE_MAPS_APIKEY,
