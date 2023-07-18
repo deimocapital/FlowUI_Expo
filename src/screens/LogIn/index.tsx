@@ -110,7 +110,7 @@ const LogIn = () => {
             <Image source={{uri:imageAddress}} style={styles.cardImage} />
             </View>
           <View style={styles.headingContainer}>
-              <Text style={styles.title}>Welcome to FlowAirBnB!</Text>
+              <Text style={styles.title}>Welcome to Floway!</Text>
               <View style={{width:'70%'}}>
                 <Text style={styles.message}>The decentralized house reservation platform built on Flow Blockchain.</Text>
               </View>

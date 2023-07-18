@@ -2,11 +2,16 @@ import React, {useState, useContext, useEffect} from 'react';
 import {View, Text, Pressable, ScrollView, TextInput, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
+import {mutate, tx} from "@onflow/fcl"
+
 import { UserContext } from '../../context/UserContext';
 import { addReservation } from '../../utils/ReservationApi';
 import styles from './styles';
 import Button from '../../components/Button';
 import { getUser } from '../../utils/UserApi';
+
+
+import * as fcl from "@onflow/fcl/dist/fcl-react-native"; 
 
 const RentalSpecs = ({route}) => {
   const user = useContext(UserContext);
@@ -44,11 +49,56 @@ const RentalSpecs = ({route}) => {
   const finalPrice = Number(price) + 10;
   const finalPriceDiscount = (Number(price) + 10) - (Number(price) * 0.05);
 
+  var flowPrice = ''
+
   if(usuario.isPrimeUser) {
     reservation.price = finalPriceDiscount;
+    flowPrice = ''+finalPriceDiscount
   } else{
     reservation.price = finalPrice;
+    flowPrice = ''+finalPrice
   }
+
+  if (!flowPrice.includes('.')) {
+    flowPrice += '.0'; // Append '.0' for decimal
+}
+
+  const Pay = async () => { 
+  
+    let amount = flowPrice;
+    let recepient = owner
+    var txId = await mutate({
+        cadence: `
+        import FungibleToken from 0x9a0766d93b6608b7
+        import FlowToken from 0x7e60df042a9c0868
+
+        transaction(recepient: Address, amount: UFix64){
+          prepare(signer: AuthAccount){
+            let sender = signer.borrow<&FlowToken.Vault>(from: /storage/flowTokenVault)
+              ?? panic("Could not borrow Provider reference to the Vault")
+    
+            let receiverAccount = getAccount(recepient)
+    
+            let receiver = receiverAccount.getCapability(/public/flowTokenReceiver)
+              .borrow<&FlowToken.Vault{FungibleToken.Receiver}>()
+              ?? panic("Could not borrow Receiver reference to the Vault")
+    
+                    let tempVault <- sender.withdraw(amount: amount)
+            receiver.deposit(from: <- tempVault)
+          }
+        }
+        `,
+        args: (arg, t) => [
+          arg(recepient, t.Address), // to "0x16fd204f231e5ac4"
+          arg(amount, t.UFix64),               // amount  
+        ],
+        payer: fcl.authz,
+                proposer: fcl.authz,
+                authorizations: [fcl.authz],
+                limit: 500,
+      })
+
+}
 
   return (
     <ScrollView style={styles.root}>
@@ -142,7 +192,7 @@ const RentalSpecs = ({route}) => {
         </View>
 
         <View style={{marginBottom: 5 ,flexDirection: 'row', justifyContent:'space-between'}}>
-          <Text style={styles.description}>FlowAirBnB fee</Text>
+          <Text style={styles.description}>Floway fee</Text>
           <Text style={styles.description}>$10</Text>
         </View>
 
@@ -167,9 +217,11 @@ const RentalSpecs = ({route}) => {
         type="make-reservation"
         onPress={()=> {
           addReservation(reservation);
+          Pay();
           console.log(reservation);
+          console.log(flowPrice);
           
-          // makeReservationAndPay();
+          //makeReservationAndPay();
           navigation.navigate('Explore');
         }}
         containerStyles={{
