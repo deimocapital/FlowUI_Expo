@@ -1,3 +1,4 @@
+![Cover Image](https://i.imgur.com/kJObnUi.png)
 
 # Floway
 "Empowering Betting with Decentralization: Unleash Control, Transparency, and Expansion across NBA, NFL, and More on the Flow Blockchain!"
