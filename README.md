@@ -1,7 +1,7 @@
 ![Cover Image](https://i.imgur.com/kJObnUi.png)
 
 # Floway
-"Empowering Betting with Decentralization: Unleash Control, Transparency, and Expansion across NBA, NFL, and More on the Flow Blockchain!"
+Seamless Accommodation Reservations on Flow: Unlocking the Future of Dapp Bookings with Cadence
 
 ## Technology Stack
 Cadence<br>
